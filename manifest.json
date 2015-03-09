@@ -1,0 +1,7 @@
+{
+  "name": "Mollydobbin tracking tool",
+  "version": "0.1",
+  "description": "Extends the Developer Tools, adding a sidebar that shows tracking information. Why \"Mollydobbin\"? He was one of two trackers in the first recorded use of Aboriginal trackers in Australia. http://www.australia.gov.au/about-australia/australian-story/aboriginal-trackers",
+  "devtools_page": "devtools.html",
+  "manifest_version": 2
+}
