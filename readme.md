@@ -1,4 +1,4 @@
-##Mollydobbin tracking tool
+#Mollydobbin tracking tool
 
 A chrome extension to show tracking information on http://next.ft.com/.
 
