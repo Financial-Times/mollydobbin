@@ -1,6 +1,6 @@
 {
   "name": "Mollydobbin tracking tool",
-  "version": "0",
+  "version": "0.0.1",
   "description": "Tool to show tracking information on http://next.ft.com/.",
   "background": {
     "scripts": ["background.js"],
