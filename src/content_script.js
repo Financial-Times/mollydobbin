@@ -39,6 +39,7 @@ function debounce(fn, delay) {
   };
 }
 
+// fire the highlight when the DOM mutates. This helps capture dynamically added elements missing the tracking code.
 document.addEventListener('DOMSubtreeModified', debounce(highlightUntrackedElements, 200), false);
 
 //$(node).parents().length
