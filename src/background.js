@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener(function() {
       conditions: [
         new chrome.declarativeContent.PageStateMatcher({
           pageUrl: {
-            hostEquals: 'next.ft.com'
+            urlMatches: '(local|next.ft)'
           }
         })
       ],
