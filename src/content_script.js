@@ -2,6 +2,10 @@
 
 var highlightUntrackedElements = function () {
 
+	// Ugly hack: Don't highlight everything on a page that
+	// has zero instances of data-trackable
+	if(!$('[data-trackable]').length) return;
+
 	var traps = ['a','button','select','input','textarea'];
 	//var containers = ['ft-paragraph','p','div','span','table','ul','ol','li'];
 
