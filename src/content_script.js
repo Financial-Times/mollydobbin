@@ -37,10 +37,16 @@
 					}
 				}).on("mouseenter",function(){
 					var _this=this;
-					$(this).popover("show");
-					$(".popover").on("mouseleave",function(){
-						$(_this).popover('hide');
-					});
+					$(_this).css('cursor', 'progress');
+					setTimeout(function(){
+						if($(_this).is(':hover')) {
+							$(_this).css('cursor', 'default');
+							$(_this).popover("show");
+							$(".popover").on("mouseleave",function(){
+								$(_this).popover('hide');
+							});
+						}
+					}, 1500);
 				}).on("mouseleave",function(){
 					var _this=this;
 					setTimeout(function(){
