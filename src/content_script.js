@@ -107,7 +107,6 @@
 				
 							var views__container = document.createElement('div');
 							views__container.classList.add('spoor__views');
-							views__container.innerHTML = '123';
 							views__container.innerHTML = '<span class="spoor__views-count">' + u.count + '</span>';
 							views__container.style.color = 'red';
 							views__container.style.backgroundColor = 'white';
