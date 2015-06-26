@@ -94,7 +94,7 @@
 			.join(',')
 
 			var fn = function () {
-			fetch('http://spoor-uuid-counter.herokuapp.com/?uuid=' + uuids)
+			fetch('https://spoor-uuid-counter.herokuapp.com/?uuid=' + uuids)
 				.then(function (res) { 
 					return res.json()
 				})
