@@ -1,7 +1,9 @@
 {
   "name": "Mollydobbin tracking tool",
-  "version": "0.0.10",
+  "short_name": "Mollydobbin",
+  "version": "0.0.12",
   "description": "Tool to show tracking information on http://next.ft.com/.",
+  "homepage_url": "http://git.svc.ft.com:8080/users/adam.braimbridge/repos/mollydobbin",
   "icons": {
     "128": "icon128.png"
   },
