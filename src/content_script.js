@@ -62,8 +62,12 @@ const getDomPath = function (el, path, depth) {
 			return string;
 		},'');
 
-		return '<p>'+domPath+'</p>'
-			+ '<h1 align="center">'+$(node).data('trackable')+'</h1>'
+		return '<p><small>'+domPath+'</small></p>'
+			+ '<h1 align="center" class="well well-lg">'
+			+		'<a href="'+href+'" target="_blank" data-trackable="mollydobbin">'
+			+			$(node).data('trackable')
+			+		'</a>'
+			+	'</h1>'
 			+ '<p><small>How many visitors click this kind of element? <br/>'
 			+ '<a href="'+href+'" target="_blank" data-trackable="mollydobbin">Find out in beacon dashboard</a></small></p>';
 	}
