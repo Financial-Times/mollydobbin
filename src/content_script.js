@@ -1,5 +1,7 @@
+// TODO: Make this like a bower component.
 (function(){
-	// Ugly hack:Don't highlight everything on a page if it has zero instances of `data-trackable`
+
+	// Don't highlight everything on a page if it has zero instances of `data-trackable`
 	if(!$('[data-trackable]').length) return;
 
 	var traps=['a','button','select','input','textarea'];
