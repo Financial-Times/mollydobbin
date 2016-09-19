@@ -44,7 +44,13 @@ const getDomPath = function (el, path, depth) {
 	};
 
 	const getPopoverContent = node => {
-		var href = 'http://ft-next-beacon-v2.herokuapp.com/'
+		if (node.pathname) {
+			if (articleMatch = node.pathname.match(/^\/content\/(.*)/)) {
+				var lanternHref = 'https://lantern.ft.com/realtime/articles/' + articleMatch[1]
+			}
+		}
+
+		var beaconHref = 'https://beacon.ft.com/'
 			+ 'data/query-wizard?query='
 			+ 'cta:click->count(device.spoorId)'
 			+ '->filter(context.domPath~'+ $(node).data('trackable') +')'
@@ -62,14 +68,20 @@ const getDomPath = function (el, path, depth) {
 			return string;
 		},'');
 
-		return '<p><small>'+domPath+'</small></p>'
+		var html = '<p><small>'+domPath+'</small></p>'
 			+ '<h1 align="center" class="well well-lg">'
-			+		'<a href="'+href+'" target="_blank" data-trackable="mollydobbin">'
+			+		'<a href="'+beaconHref+'" target="_blank" data-trackable="mollydobbin">'
 			+			$(node).data('trackable')
 			+		'</a>'
 			+	'</h1>'
 			+ '<p><small>How many visitors click this kind of element? <br/>'
-			+ '<a href="'+href+'" target="_blank" data-trackable="mollydobbin">Find out in beacon dashboard</a></small></p>';
+			+ '<a href="'+beaconHref+'" target="_blank" data-trackable="mollydobbin">Find out in beacon dashboard</a></small></p>';
+
+		if (lanternHref) {
+			html += '<p><small>How popular is this article? <br/>'
+			     +  '<a href="'+lanternHref+'" target="_blank" data-trackable="mollydobbin">Find out in lantern</a></small></p>';
+		}
+		return html;
 	}
 
 	// Expose all of the deepest trackable elements(traps)
@@ -126,7 +138,7 @@ const getDomPath = function (el, path, depth) {
 
 	chrome.storage.sync.get({
 		likesHighlight: true,
-		likesTooltip: false
+		likesTooltip: true
 	}, function(options) {
 
 		if(options.likesHighlight){
@@ -140,50 +152,6 @@ const getDomPath = function (el, path, depth) {
 			document.addEventListener('DOMSubtreeModified',debounce(popoverTrackedElements,200),false);
 			popoverTrackedElements();
 		}
-
-
-		// TODO: Ressurect this feature
-		var uuids = Array.prototype.slice.call(document.querySelectorAll('.next-card[data-content-id]'), 0)
-			.map(function (el) {
-				return el.getAttribute('data-content-id');
-			})
-			.slice(0,50)
-			.join(',')
-
-			var fn = function () {
-			fetch('https://spoor-uuid-counter.herokuapp.com/?uuid=' + uuids)
-				.then(function (res) {
-					return res.json()
-				})
-				.then(function (uid) {
-					uid.map(function (u) {
-						Array.prototype.slice.call(document.querySelectorAll('[data-content-id="'+u.uuid+'"] .next-card__headline'), 0)
-							.map(function (el) {
-
-							if (!u.count) return;
-
-							var views__container = document.createElement('div');
-							views__container.classList.add('spoor__views');
-							views__container.innerHTML = '<span class="spoor__views-count">' + u.count + '</span>';
-							views__container.style.color = 'red';
-							views__container.style.backgroundColor = 'white';
-							views__container.style.padding = '1px 2px';
-							views__container.style.display = 'inline-block';
-							views__container.style.fontSize = '12px';
-							views__container.style.fontFamily = 'sans-serif';
-							views__container.style.fontStyle = 'normal';
-							views__container.style.fontWeight = 'normal';
-
-							if (el.querySelector('.spoor__views'))
-								el.replaceChild(views__container, el.querySelector('.spoor__views'));
-							else
-								el.appendChild(views__container);
-							})
-					})
-				})
-			}
-
-			fn(); setInterval(fn, 5000);
 
 	});
 })();

@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener(function() {
       conditions: [
         new chrome.declarativeContent.PageStateMatcher({
           pageUrl: {
-            urlMatches: '(local|next.ft)'
+            urlMatches: '(local|www.ft)'
           }
         })
       ],
