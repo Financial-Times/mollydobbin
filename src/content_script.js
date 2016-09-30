@@ -1,4 +1,3 @@
-// TODO: Make this like a bower component.
 const getDomPath = function (el, path, depth) {
 	path = path || [];
 	depth = depth || 0;
@@ -31,7 +30,7 @@ const getDomPath = function (el, path, depth) {
 	// Don't highlight everything on a page if it has zero instances of `data-trackable`
 	if(!$('[data-trackable]').length) return;
 
-	var traps=['a','button','select','input','textarea'];
+	var traps=['a','button','input'];
 
 	// Expose all elements that ought to be tracked but are not
 	var highlightUntrackedElements=function(){
@@ -43,18 +42,20 @@ const getDomPath = function (el, path, depth) {
 		});
 	};
 
+	const getBeaconHref = dataTrackable => {
+		return '<a target="_blank" data-trackable="mollydobbin" href="https://beacon.ft.com/'
+			+ 'data/query-wizard?query='
+			+ 'cta:click->count(device.spoorId)'
+			+ '->filter(click.dataTrackablePath~'+ dataTrackable +')'
+			+ '->group(click.dataTrackablePath)->print(Table)">'+ dataTrackable +'</a>';
+	}
+
 	const getPopoverContent = node => {
 		if (node.pathname) {
 			if (articleMatch = node.pathname.match(/^\/content\/(.*)/)) {
 				var lanternHref = 'https://lantern.ft.com/realtime/articles/' + articleMatch[1]
 			}
 		}
-
-		var beaconHref = 'https://beacon.ft.com/'
-			+ 'data/query-wizard?query='
-			+ 'cta:click->count(device.spoorId)'
-			+ '->filter(context.domPath~'+ $(node).data('trackable') +')'
-			+ '->group(context.domPath)->print(Table)';
 
 		var domPath = getDomPath(node).reverse();
 		domPath = domPath.reduce((s,n,i) => {
@@ -63,23 +64,17 @@ const getDomPath = function (el, path, depth) {
 			while (x++ <= i) {
 				spaces += '&nbsp;&nbsp;';
 			}
-			var string = s + n + '<br/>' + spaces;
+			var string = s + getBeaconHref(n) + '<br/>' + spaces;
 			if (i < domPath.length - 1) string += ' > '
 			return string;
 		},'');
 
-		var html = '<p><small>'+domPath+'</small></p>'
-			+ '<h1 align="center" class="well well-lg">'
-			+		'<a href="'+beaconHref+'" target="_blank" data-trackable="mollydobbin">'
-			+			$(node).data('trackable')
-			+		'</a>'
-			+	'</h1>'
-			+ '<p><small>How many visitors click this kind of element? <br/>'
-			+ '<a href="'+beaconHref+'" target="_blank" data-trackable="mollydobbin">Find out in beacon dashboard</a></small></p>';
+		var html = '<p><small><b>How many visitors click this kind of element?</b> Find out in beacon:</small></p>'
+			+ '<p style="padding-left:1em;">'+domPath+'</p>';
 
 		if (lanternHref) {
-			html += '<p><small>How popular is this article? <br/>'
-			     +  '<a href="'+lanternHref+'" target="_blank" data-trackable="mollydobbin">Find out in lantern</a></small></p>';
+			html += '<p><small><b>How popular is this article? </b></small></p>'
+			     +  '<p style="padding-left:1em;"><a href="'+lanternHref+'" target="_blank" data-trackable="mollydobbin">Find out in lantern</a></p>';
 		}
 		return html;
 	}
