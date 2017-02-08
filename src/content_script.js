@@ -82,7 +82,11 @@ const getDomPath = function (el, path, depth) {
 	// Expose all of the deepest trackable elements(traps)
 	// Popover code from http://plnkr.co/edit/x2VMhh
 	var popoverTrackedElements=function(){
-		var trackedElements=[].slice.call(document.querySelectorAll('[data-trackable]'));
+		var clickableSelectors = [
+			'a[data-trackable]',
+			'button[data-trackable]',
+		]
+		var trackedElements=[].slice.call(document.querySelectorAll(clickableSelectors));
 		trackedElements.forEach(function(node){
 			if($(node).data('trackable') === 'mollydobbin') return;
 
