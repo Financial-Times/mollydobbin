@@ -46,7 +46,7 @@ const getDomPath = function (el, path, depth) {
 		return '<a target="_blank" data-trackable="mollydobbin" href="https://beacon.ft.com/'
 			+ 'data/query-wizard?query='
 			+ 'cta:click->count(device.spoorId)'
-			+ '->filter(click.dataTrackablePath~'+ dataTrackable +')'
+			+ '->filter(click.dataTrackablePath~'+ encodeURIComponent(dataTrackable) +')'
 			+ '->group(click.dataTrackablePath)->print(Table)">'+ dataTrackable +'</a>';
 	}
 
