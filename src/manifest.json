@@ -1,7 +1,7 @@
 {
   "name": "Mollydobbin tracking tool",
   "short_name": "Mollydobbin",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Tool to show tracking information on http://*.ft.com/.",
   "homepage_url": "https://github.com/Financial-Times/mollydobbin",
   "icons": {
