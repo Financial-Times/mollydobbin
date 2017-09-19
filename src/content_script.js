@@ -30,7 +30,7 @@ const getDomPath = function (el, path, depth) {
 	// Don't highlight everything on a page if it has zero instances of `data-trackable`
 	if(!$('[data-trackable]').length) return;
 
-	var traps=['a','button','input'];
+	var traps=['a','button','input','[role="button"]'];
 
 	// Expose all elements that ought to be tracked but are not
 	var highlightUntrackedElements=function(){
@@ -85,6 +85,7 @@ const getDomPath = function (el, path, depth) {
 		var clickableSelectors = [
 			'a[data-trackable]',
 			'button[data-trackable]',
+			'[role="button"]', // This ought to be restricted to data-trackable, but :shrugs:
 		]
 		var trackedElements=[].slice.call(document.querySelectorAll(clickableSelectors));
 		trackedElements.forEach(function(node){
