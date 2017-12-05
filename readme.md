@@ -2,7 +2,7 @@
 
 A chrome extension to show tracking information on http://ft.com/.
 
- * Only available for Financial Times staff, in the [Chrome webstore](https://chrome.google.com/webstore/detail/mollydobbin-tracking-tool/cmhfmieofijgphlefokpckljhgcmane) 
+ * Only available for Financial Times staff, in the [Chrome webstore](https://chrome.google.com/webstore/detail/mollydobbin-tracking-tool/cmhfmieofijgphlefokpckljhgcmaneb) 
  * Developers can update this extension in the [Chrome webstore developer dashboard](https://chrome.google.com/webstore/developer/dashboard)
 
 #### Why "Mollydobbin"?
