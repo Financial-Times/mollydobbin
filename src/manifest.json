@@ -1,8 +1,8 @@
 {
   "name": "Mollydobbin tracking tool",
   "short_name": "Mollydobbin",
-  "version": "0.0.20",
-  "description": "Tool to show tracking information on http://*.ft.com/.",
+  "version": "0.0.21",
+  "description": "Tool to show tracking information on https://*.ft.com/ (and https://asia.nikkei.com/).",
   "homepage_url": "https://github.com/Financial-Times/mollydobbin",
   "icons": {
     "128": "icon128.png"
